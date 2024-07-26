@@ -218,6 +218,11 @@ const ProductDetail = async ({ params: { id } }: Props) => {
           </div>
         </div>
       )}
+      {product?.sliderImages?.length !== 0 && (
+        <div className="border-t-gray-800 py-3">
+          <BottomCarousel sliderImages={product.sliderImages} />
+        </div>
+      )}
       {product?.productInformationTech.length > 1 &&
         product?.productInformationAdditional.length > 1 && (
           <div>
@@ -266,11 +271,6 @@ const ProductDetail = async ({ params: { id } }: Props) => {
             </div>
           </div>
         )}
-      {product?.sliderImages?.length !== 0 && (
-        <div className="border-t-gray-800 py-3">
-          <BottomCarousel sliderImages={product.sliderImages} />
-        </div>
-      )}
     </div>
   );
 };
