@@ -5,8 +5,6 @@ import { getProductById, getSimilarProducts } from "@/lib/actions";
 import { formatNumber } from "@/lib/utils";
 import { Product } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
-import { redirect } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -15,7 +13,6 @@ type Props = {
 
 const ProductDetail = async ({ params: { id } }: Props) => {
   const product: Product = await getProductById(id);
-  if (!product) redirect("/");
   const similarProduct = await getSimilarProducts(id);
   const detailsArray = product?.description.trim().split("\n") || [];
   const brand = product.productInformationTech.filter(
@@ -180,14 +177,10 @@ const ProductDetail = async ({ params: { id } }: Props) => {
           </div>
           <div className="flex justify-between gap-5 my-6">
             <button className="btn1 w-full mx-auto flex items-center justify-center gap-3">
-              <Link href="/" className="text-base text-white ">
-                Buy Now
-              </Link>
+              Buy Now
             </button>
             <button className="btn w-full mx-auto flex items-center justify-center gap-3">
-              <Link href="/" className="text-base text-white">
-                Add to cart
-              </Link>
+              Add to cart
             </button>
           </div>
         </div>
