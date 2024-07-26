@@ -15,9 +15,11 @@ const ProductDetail = async ({ params: { id } }: Props) => {
   const product: Product = await getProductById(id);
   const similarProduct = await getSimilarProducts(id);
   const detailsArray = product?.description.trim().split("\n") || [];
-  const brand = product.productInformationTech.filter(
-    (item) => item.name == "Brand"
-  );
+  const brand =
+    product?.productInformationTech.filter((item) => item.name == "Brand") ||
+    [];
+
+  console.log(brand);
 
   return (
     <div className="product-container">
@@ -53,9 +55,11 @@ const ProductDetail = async ({ params: { id } }: Props) => {
               <p className="text-[28px] text-secondary font-semibold">
                 {product?.title}
               </p>
-              <p>
-                {brand[0].name}: {brand[0].value}
-              </p>
+              {brand.length > 0 && (
+                <p>
+                  {brand[0]?.name}: {brand[0]?.value}
+                </p>
+              )}
               <div className="flex gap-3">
                 <div className="product-stars">
                   <Image
@@ -191,8 +195,8 @@ const ProductDetail = async ({ params: { id } }: Props) => {
             Product Description
           </h3>
           <div>
-            <p>{product.productDescription}</p>
-            {detailsArray.length > 1 && (
+            <p>{product?.productDescription}</p>
+            {detailsArray?.length > 1 && (
               <div className="flex flex-col gap-4">
                 <ul className="list-disc">
                   {detailsArray?.map((detail, index) => (
@@ -214,37 +218,20 @@ const ProductDetail = async ({ params: { id } }: Props) => {
           </div>
         </div>
       )}
-      <div>
-        <h3 className="text-2xl text-secondary font-semibold mb-10">
-          Product Information
-        </h3>
+      {product?.productInformationTech.length > 1 &&
+        product?.productInformationAdditional.length > 1 && (
+          <div>
+            <h3 className="text-2xl text-secondary font-semibold mb-10">
+              Product Information
+            </h3>
 
-        <div className="flex gap-5 md:flex-row flex-col justify-between">
-          <div className="md:w-1/2 h-fit">
-            <p className="text-xl font-semibold text-secondary mb-5">
-              Technical Details
-            </p>
-            <table>
-              {product.productInformationTech.map((item, index) => (
-                <tr key={index}>
-                  <th className="bg-gray-100 border p-2 font-medium text-left pl-5">
-                    {item.name}
-                  </th>
-                  <td className="border p-2 font-normal text-left pl-5">
-                    {item.value}
-                  </td>
-                </tr>
-              ))}
-            </table>
-          </div>
-          <div className="md:w-1/2 h-fit">
-            <p className="text-xl font-semibold text-secondary mb-5">
-              Additional Details
-            </p>
-            <table>
-              {product.productInformationAdditional.map(
-                (item, index) =>
-                  item.name !== "Customer Reviews" && (
+            <div className="flex gap-5 md:flex-row flex-col justify-between">
+              <div className="md:w-1/2 h-fit">
+                <p className="text-xl font-semibold text-secondary mb-5">
+                  Technical Details
+                </p>
+                <table>
+                  {product.productInformationTech.map((item, index) => (
                     <tr key={index}>
                       <th className="bg-gray-100 border p-2 font-medium text-left pl-5">
                         {item.name}
@@ -253,12 +240,32 @@ const ProductDetail = async ({ params: { id } }: Props) => {
                         {item.value}
                       </td>
                     </tr>
-                  )
-              )}
-            </table>
+                  ))}
+                </table>
+              </div>
+              <div className="md:w-1/2 h-fit">
+                <p className="text-xl font-semibold text-secondary mb-5">
+                  Additional Details
+                </p>
+                <table>
+                  {product.productInformationAdditional.map(
+                    (item, index) =>
+                      item.name !== "Customer Reviews" && (
+                        <tr key={index}>
+                          <th className="bg-gray-100 border p-2 font-medium text-left pl-5">
+                            {item.name}
+                          </th>
+                          <td className="border p-2 font-normal text-left pl-5">
+                            {item.value}
+                          </td>
+                        </tr>
+                      )
+                  )}
+                </table>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
       {product?.sliderImages?.length !== 0 && (
         <div className="border-t-gray-800 py-3">
           <BottomCarousel sliderImages={product.sliderImages} />
