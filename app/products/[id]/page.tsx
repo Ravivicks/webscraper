@@ -21,7 +21,7 @@ const ProductDetail = async ({ params: { id } }: Props) => {
 
   return (
     <div className="product-container">
-      <div className="flex gap-28 xl:flex-row flex-col">
+      <div className="flex gap-10 md:gap-28 xl:flex-row flex-col w-fit">
         <div className="product-image">
           <div className="flex flex-row-reverse">
             <Image
@@ -185,21 +185,23 @@ const ProductDetail = async ({ params: { id } }: Props) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-16 w-fit">
         <div className="flex flex-col gap-5">
           <h3 className="text-2xl text-secondary font-semibold">
             Product Description
           </h3>
-          <p>{product.productDescription}</p>
-          {detailsArray.length > 1 && (
-            <div className="flex flex-col gap-4">
-              <ul className="list-disc">
-                {detailsArray?.map((detail, index) => (
-                  <li key={index}>{detail}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <div>
+            <p>{product.productDescription}</p>
+            {detailsArray.length > 1 && (
+              <div className="flex flex-col gap-4">
+                <ul className="list-disc">
+                  {detailsArray?.map((detail, index) => (
+                    <li key={index}>{detail}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {similarProduct && similarProduct?.length > 0 && (
@@ -217,8 +219,8 @@ const ProductDetail = async ({ params: { id } }: Props) => {
           Product Information
         </h3>
 
-        <div className="flex gap-5 justify-between">
-          <div className="w-1/2 h-fit">
+        <div className="flex gap-5 md:flex-row flex-col justify-between">
+          <div className="md:w-1/2 h-fit">
             <p className="text-xl font-semibold text-secondary mb-5">
               Technical Details
             </p>
@@ -235,7 +237,7 @@ const ProductDetail = async ({ params: { id } }: Props) => {
               ))}
             </table>
           </div>
-          <div className="w-1/2 h-fit">
+          <div className="md:w-1/2 h-fit">
             <p className="text-xl font-semibold text-secondary mb-5">
               Additional Details
             </p>

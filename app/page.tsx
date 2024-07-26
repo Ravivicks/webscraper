@@ -20,7 +20,7 @@ const Home = async () => {
               Welcome to Your Ultimate Amazon Product Scraper!
             </h1>
 
-            <p className="text-center px-16">
+            <p className="text-center md:px-16 px-0">
               Introducing our cutting-edge web scraping product portal, designed
               to streamline the process of gathering detailed product
               information from Amazon. Our platform leverages advanced web
@@ -35,7 +35,7 @@ const Home = async () => {
               your ultimate resource for comprehensive product insights.
             </p>
             <div className="flex justify-between gap-5 my-6 w-full">
-              <button className="btn1 w-1/3 mx-auto flex items-center justify-center gap-3">
+              <button className="btn1 w-full md:w-1/3 sm:w-full mx-auto flex items-center justify-center gap-3">
                 <Link href="/sign-in" className="text-base text-white ">
                   Click here to start scraping products
                 </Link>
@@ -50,7 +50,7 @@ const Home = async () => {
             />
           </div>
         )}
-        <div className="flex gap-16 justify-center items-center">
+        <div className="flex flex-col md:flex-row gap-16 justify-center items-center">
           <div className="flex flex-col justify-center">
             <p className="small-text">
               Smart Shoping Starts Here:
