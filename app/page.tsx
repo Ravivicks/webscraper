@@ -71,8 +71,8 @@ const Home = async () => {
               Powerful self-serve product and growth analytics to help you
               convert, engage, and retain more.
             </p>
-            <Tabs />
-            {/* {userId ? <SearchBarEbay /> : <Newsletter />} */}
+
+            {userId ? <Tabs /> : <Newsletter />}
           </div>
           <HeroCarousel />
         </div>
