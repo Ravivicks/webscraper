@@ -80,6 +80,29 @@ export function extractDescription($: any) {
   return "";
 }
 
+export function extractEbayDescription($: any) {
+  // these are possible elements holding description of the product
+  const selectors = [
+    // ".a-unordered-list .a-vertical .a-spacing-mini",
+    "#desc_ifr",
+    // Add more selectors here if needed
+  ];
+
+  for (const selector of selectors) {
+    const elements = $(selector);
+    if (elements.length > 0) {
+      const textContent = elements
+        .map((_: any, element: any) => $(element).text().trim())
+        .get()
+        .join("\n");
+      return textContent;
+    }
+  }
+
+  // If no matching elements were found, return an empty string
+  return "";
+}
+
 export function getHighestPrice(priceList: PriceHistoryItem[]) {
   let highestPrice = priceList[0];
 
