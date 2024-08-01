@@ -17,7 +17,6 @@ const navIcons = [
 
 const Navbar = () => {
   const { user } = useUser();
-  console.log(user);
 
   return (
     <header className="w-full">

@@ -1,16 +1,19 @@
 "use client";
 
-import { scrapeAndStoreProduct } from "@/lib/actions";
+import {
+  scrapeAndStoreEbayProduct,
+  scrapeAndStoreProduct,
+} from "@/lib/actions";
 import React, { FormEvent } from "react";
 
-const isValidAmazonProductUrl = (url: string) => {
+const isValidEbayProductUrl = (url: string) => {
   try {
     const parsedURL = new URL(url);
     const hostname = parsedURL.hostname;
     if (
-      hostname.includes("amazon.in") ||
-      hostname.includes("amazon") ||
-      hostname.endsWith("amazon")
+      hostname.includes("ebay.com") ||
+      hostname.includes("ebay") ||
+      hostname.endsWith("ebay")
     ) {
       return true;
     }
@@ -20,16 +23,16 @@ const isValidAmazonProductUrl = (url: string) => {
   return false;
 };
 
-const SearchBar = () => {
+const SearchBarEbay = () => {
   const [searchPrompt, setSearchPrompt] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const isValidLink = isValidAmazonProductUrl(searchPrompt);
-    if (!isValidLink) return alert("please provide valid amazon link");
+    const isValidLink = isValidEbayProductUrl(searchPrompt);
+    if (!isValidLink) return alert("please provide valid ebay link");
     try {
       setIsLoading(true);
-      const product = await scrapeAndStoreProduct(searchPrompt);
+      const product = await scrapeAndStoreEbayProduct(searchPrompt);
     } catch (error) {
       setIsLoading(false);
     } finally {
@@ -42,7 +45,7 @@ const SearchBar = () => {
         type="text"
         value={searchPrompt}
         onChange={(e) => setSearchPrompt(e.target.value)}
-        placeholder="Enter Amazon product link"
+        placeholder="Enter ebay product link"
         className="searchbar-input"
       />
       <button
@@ -56,4 +59,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default SearchBarEbay;

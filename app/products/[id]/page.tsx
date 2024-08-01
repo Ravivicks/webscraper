@@ -19,8 +19,6 @@ const ProductDetail = async ({ params: { id } }: Props) => {
     product?.productInformationTech.filter((item) => item.name == "Brand") ||
     [];
 
-  console.log(brand);
-
   return (
     <div className="product-container">
       <div className="flex gap-10 md:gap-28 xl:flex-row flex-col w-fit">
@@ -223,31 +221,31 @@ const ProductDetail = async ({ params: { id } }: Props) => {
           <BottomCarousel sliderImages={product.sliderImages} />
         </div>
       )}
-      {product?.productInformationTech.length > 1 &&
-        product?.productInformationAdditional.length > 1 && (
-          <div>
-            <h3 className="text-2xl text-secondary font-semibold mb-10">
-              Product Information
-            </h3>
+      {product?.productInformationTech.length > 1 && (
+        <div>
+          <h3 className="text-2xl text-secondary font-semibold mb-10">
+            Product Information
+          </h3>
 
-            <div className="flex gap-5 md:flex-row flex-col justify-between">
-              <div className="md:w-1/2 h-fit">
-                <p className="text-xl font-semibold text-secondary mb-5">
-                  Technical Details
-                </p>
-                <table>
-                  {product.productInformationTech.map((item, index) => (
-                    <tr key={index}>
-                      <th className="bg-gray-100 border p-2 font-medium text-left pl-5">
-                        {item.name}
-                      </th>
-                      <td className="border p-2 font-normal text-left pl-5">
-                        {item.value}
-                      </td>
-                    </tr>
-                  ))}
-                </table>
-              </div>
+          <div className="flex gap-5 md:flex-row flex-col justify-between">
+            <div className="md:w-1/2 h-fit">
+              <p className="text-xl font-semibold text-secondary mb-5">
+                Technical Details
+              </p>
+              <table>
+                {product.productInformationTech.map((item, index) => (
+                  <tr key={index}>
+                    <th className="bg-gray-100 border p-2 font-medium text-left pl-5">
+                      {item.name}
+                    </th>
+                    <td className="border p-2 font-normal text-left pl-5">
+                      {item.value}
+                    </td>
+                  </tr>
+                ))}
+              </table>
+            </div>
+            {product?.productInformationAdditional.length > 1 && (
               <div className="md:w-1/2 h-fit">
                 <p className="text-xl font-semibold text-secondary mb-5">
                   Additional Details
@@ -268,9 +266,10 @@ const ProductDetail = async ({ params: { id } }: Props) => {
                   )}
                 </table>
               </div>
-            </div>
+            )}
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };

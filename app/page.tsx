@@ -2,6 +2,8 @@ import HeroCarousel from "@/components/HeroCarousel";
 import Newsletter from "@/components/Newsletter";
 import ProductCard from "@/components/ProductCard";
 import SearchBar from "@/components/SearchBar";
+import SearchBarEbay from "@/components/SearchBarEbay";
+import Tabs from "@/components/Tabs";
 import { getAllProducts } from "@/lib/actions";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
@@ -69,8 +71,8 @@ const Home = async () => {
               Powerful self-serve product and growth analytics to help you
               convert, engage, and retain more.
             </p>
-
-            {userId ? <SearchBar /> : <Newsletter />}
+            <Tabs />
+            {/* {userId ? <SearchBarEbay /> : <Newsletter />} */}
           </div>
           <HeroCarousel />
         </div>
