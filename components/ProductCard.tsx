@@ -1,11 +1,11 @@
 import { formatNumber } from "@/lib/utils";
-import { Product } from "@/types";
+import { IProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 interface Props {
-  product: Product;
+  product: IProduct;
 }
 
 const ProductCard = ({ product }: Props) => {
