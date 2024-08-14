@@ -3,7 +3,7 @@ import PriceInfoCard from "@/components/PriceInfoCard";
 import ProductCard from "@/components/ProductCard";
 import { getProductById, getSimilarProducts } from "@/lib/actions";
 import { formatNumber } from "@/lib/utils";
-import { Product } from "@/types";
+import { IProduct } from "@/types";
 import Image from "next/image";
 import React from "react";
 
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const ProductDetail = async ({ params: { id } }: Props) => {
-  const product: Product = await getProductById(id);
+  const product: IProduct = await getProductById(id);
   const similarProduct = await getSimilarProducts(id);
   const detailsArray = product?.description.trim().split("\n") || [];
   const brand =
