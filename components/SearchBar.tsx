@@ -22,6 +22,7 @@ const isValidAmazonProductUrl = (url: string) => {
 
 const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = React.useState("");
+  const [brand, setBrand] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,7 +30,7 @@ const SearchBar = () => {
     if (!isValidLink) return alert("please provide valid amazon link");
     try {
       setIsLoading(true);
-      const product = await scrapeAndStoreProduct(searchPrompt);
+      const product = await scrapeAndStoreProduct(searchPrompt, brand);
     } catch (error) {
       setIsLoading(false);
     } finally {
@@ -43,6 +44,14 @@ const SearchBar = () => {
         value={searchPrompt}
         onChange={(e) => setSearchPrompt(e.target.value)}
         placeholder="Enter Amazon product link"
+        className="searchbar-input"
+      />
+      <input
+        type="text"
+        value={brand}
+        onChange={(e) => setBrand(e.target.value)}
+        placeholder="Enter Brand Name"
+        required
         className="searchbar-input"
       />
       <button

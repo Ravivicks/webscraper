@@ -2,14 +2,11 @@
 
 import axios from "axios";
 import * as cheerio from "cheerio";
-import {
-  extractCurrency,
-  extractDescription,
-  extractEbayDescription,
-  extractPrice,
-} from "../../lib/utils";
+import { extractPrice } from "../../lib/utils";
 
-export async function scrapeEbayProduct(url: string) {
+import puppeteer from "puppeteer";
+
+export async function scrapeEbayProduct(url: string, brand: string) {
   if (!url) return;
 
   // BrightData proxy configuration
@@ -85,6 +82,7 @@ export async function scrapeEbayProduct(url: string) {
       image: imageUrlsArr[0],
       sliderImages: imageUrlsArr,
       title,
+      brand,
       discount: 0,
       currentPrice: Number(currentPrice) || 0,
       originalPrice: 0 || Number(currentPrice),

@@ -25,6 +25,7 @@ const isValidEbayProductUrl = (url: string) => {
 
 const SearchBarEbay = () => {
   const [searchPrompt, setSearchPrompt] = React.useState("");
+  const [brand, setBrand] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -32,7 +33,7 @@ const SearchBarEbay = () => {
     if (!isValidLink) return alert("please provide valid ebay link");
     try {
       setIsLoading(true);
-      const product = await scrapeAndStoreEbayProduct(searchPrompt);
+      const product = await scrapeAndStoreEbayProduct(searchPrompt, brand);
     } catch (error) {
       setIsLoading(false);
     } finally {
@@ -46,6 +47,14 @@ const SearchBarEbay = () => {
         value={searchPrompt}
         onChange={(e) => setSearchPrompt(e.target.value)}
         placeholder="Enter ebay product link"
+        className="searchbar-input"
+      />
+      <input
+        type="text"
+        value={brand}
+        onChange={(e) => setBrand(e.target.value)}
+        placeholder="Enter Brand Name"
+        required
         className="searchbar-input"
       />
       <button

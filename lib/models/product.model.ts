@@ -10,17 +10,20 @@ const productSchema = new mongoose.Schema(
     discount: { type: String, required: true },
     currentPrice: { type: Number, required: true },
     originalPrice: { type: Number, required: true },
+    brand: { type: String, required: true },
     priceHistory: [
       {
         price: { type: Number, required: true },
         date: { type: Date, default: Date.now },
       },
     ],
+    pdfFile: { type: String },
     lowestPrice: { type: Number },
     highestPrice: { type: Number },
     averagePrice: { type: Number },
     discountRate: { type: Number },
     description: { type: String },
+    category: { type: String },
     productDescription: { type: String },
     productInformationTech: [
       {

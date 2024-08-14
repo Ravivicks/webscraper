@@ -10,13 +10,15 @@ export type User = {
   email: string;
 };
 
-export type Product = {
-  _id?: string;
+export type IProduct = {
+  _id: string;
   url: string;
   currency: string;
   image: string;
+  pdfFile: string;
   title: string;
   discount: string;
+  brand: string;
   currentPrice: number;
   originalPrice: number;
   priceHistory: PriceHistoryItem[] | [];
