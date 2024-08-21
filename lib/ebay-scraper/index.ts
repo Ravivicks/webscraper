@@ -46,6 +46,8 @@ export async function scrapeEbayProduct(url: string, brand: string) {
 
     const currentPrice = extractPrice($(".x-price-primary span.ux-textspans"));
 
+    const image = $("div.ux-image-carousel-item img").attr("src");
+
     const imageUrlsArr: any = [];
     $("div.ux-image-carousel-item img").each((index, element) => {
       const srcset = $(element).attr("data-srcset");
@@ -79,7 +81,7 @@ export async function scrapeEbayProduct(url: string, brand: string) {
     const data = {
       url,
       currency: "$",
-      image: imageUrlsArr[0],
+      image: image,
       sliderImages: imageUrlsArr,
       title,
       brand,
@@ -89,6 +91,8 @@ export async function scrapeEbayProduct(url: string, brand: string) {
       priceHistory: [],
       discountRate: 0,
       category,
+      quantity: 1,
+      minQuantity: 1,
       reviewsCount: 100,
       stars: 0,
       isOutOfStock: false,

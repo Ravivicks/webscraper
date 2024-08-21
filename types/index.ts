@@ -20,6 +20,8 @@ export type IProduct = {
   discount: string;
   brand: string;
   currentPrice: number;
+  quantity: number;
+  minQuantity: number;
   originalPrice: number;
   priceHistory: PriceHistoryItem[] | [];
   productInformationTech: ProductInfoItem[] | [];
