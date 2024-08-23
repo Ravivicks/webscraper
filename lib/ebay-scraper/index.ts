@@ -92,6 +92,7 @@ export async function scrapeEbayProduct(url: string, brand: string) {
       discountRate: 0,
       category,
       quantity: 1,
+      type: "all",
       minQuantity: 1,
       reviewsCount: 100,
       stars: 0,

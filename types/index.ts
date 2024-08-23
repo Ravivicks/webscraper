@@ -35,6 +35,7 @@ export type IProduct = {
   category: string;
   reviewsCount: number;
   stars: number;
+  type: string;
   isOutOfStock: Boolean;
   users?: User[];
   sliderImages?: string[] | [];
